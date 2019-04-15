@@ -58,11 +58,11 @@ app.get('/recipe',(req, res) => {
 
 app.post('/recipe',(req, res) => {
 	const credentials = auth(req)
-  if (!credentials || !(credentials.name === process.env.USER && credentials.pass === process.env.USER_PW)) {
-    res.statusCode = 401
-    res.setHeader('WWW-Authenticate', 'Basic realm="allow access"')
-    res.end('Access denied')
-  } else {
+  // if (!credentials || !(credentials.name === process.env.USER && credentials.pass === process.env.USER_PW)) {
+  //   res.statusCode = 401
+  //   res.setHeader('WWW-Authenticate', 'Basic realm="allow access"')
+  //   res.end('Access denied')
+  // } else {
   	request.post({
   		url,
   		method: 'POST',
@@ -76,21 +76,21 @@ app.post('/recipe',(req, res) => {
   		console.log(data);
   		res.send(data);
   	})
-  }
+  // }
 });
 
 app.delete('/recipe/:recipeId',(req, res) => {
-	const credentials = auth(req)
-  if (!credentials || !(credentials.name === process.env.USER && credentials.pass === process.env.USER_PW)) {
-    res.statusCode = 401
-    res.setHeader('WWW-Authenticate', 'Basic realm="allow access"')
-    res.end('Access denied')
-  } else {
+	// const credentials = auth(req)
+  // if (!credentials || !(credentials.name === process.env.USER && credentials.pass === process.env.USER_PW)) {
+  //   res.statusCode = 401
+  //   res.setHeader('WWW-Authenticate', 'Basic realm="allow access"')
+  //   res.end('Access denied')
+  // } else {
     request.delete({
   		url: `${baseUrl}/${req.params.recipeId}?apiKey=${mlabKey}`,
   	}).then((data)=>{
       console.log(data);
-  		res.send(`deleted - ${req.params.recipeId}`);
+  		res.send(data);
   	}).catch((error)=> {
       console.log(error);
       res.status(error.statusCode).send({
@@ -98,7 +98,7 @@ app.delete('/recipe/:recipeId',(req, res) => {
         message: error.message,
       });
     })
-  }
+  // }
 
 });
 
