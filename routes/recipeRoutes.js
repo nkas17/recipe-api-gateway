@@ -4,13 +4,7 @@ const request = require('request-promise');
 const auth = require('basic-auth');
 const { baseUrl, mLabKey, url } = require('../config');
 
-router.get('/',(req, res) => {
-	request.get({
-		url,
-	}).then((data)=>{
-		res.send(data);
-	})
-});
+
 
 router.post('/',(req, res) => {
 	const credentials = auth(req)

@@ -11,4 +11,7 @@ module.exports = {
   mLabKey,
   port: process.env.PORT || 3000,
   url: `${baseUrl}?apiKey=${mLabKey}`,
+  user: process.env.USER,
+  password: process.env.USER_PW,
+  jwtKey: process.env.JWT_KEY
 };
