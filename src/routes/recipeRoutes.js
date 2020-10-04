@@ -1,61 +1,37 @@
 const express = require('express');
 
 const router = express.Router();
-const request = require('request-promise');
-// const auth = require('basic-auth');
-const { baseUrl, mLabKey, url } = require('../../config');
+const { RecipeModel } = require('../database/recipeModel');
 
 router.post('/', (req, res) => {
-	// const credentials = auth(req);
-	// if (!credentials || !(credentials.name === process.env.USER && credentials.pass === process.env.USER_PW)) {
-	//   res.statusCode = 401
-	//   res.setHeader('WWW-Authenticate', 'Basic realm="allow access"')
-	//   res.end('Access denied')
-	// } else {
-	request
-		.post({
-			url,
-			method: 'POST',
-			body: req.body,
-			json: true,
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-		})
-		.then((data) => {
+	// eslint-disable-next-line no-console
+	console.log('request body', req.body);
+	const recipe = new RecipeModel(req.body);
+	recipe.save((err, savedRecipe) => {
+		if (err) {
 			// eslint-disable-next-line no-console
-			console.log(data);
-			res.send(data);
-		});
-	// }
+			console.log('ERROR', err);
+			return res.send({});
+		}
+		// eslint-disable-next-line no-console
+		console.log('saved recipe id', savedRecipe._id);
+		return res.send(savedRecipe);
+	});
 });
 
 router.delete('/:recipeId', (req, res) => {
-	// const credentials = auth(req)
-	// if (!credentials || !(credentials.name === process.env.USER && credentials.pass === process.env.USER_PW)) {
-	//   res.statusCode = 401
-	//   res.setHeader('WWW-Authenticate', 'Basic realm="allow access"')
-	//   res.end('Access denied')
-	// } else {
-	request
-		.delete({
-			url: `${baseUrl}/${req.params.recipeId}?apiKey=${mLabKey}`,
-		})
-		.then((data) => {
+	// eslint-disable-next-line no-console
+	console.log('recipe id to delete', req.params.recipeId);
+	RecipeModel.deleteOne({ _id: req.params.recipeId }, (err) => {
+		if (err) {
 			// eslint-disable-next-line no-console
-			console.log(data);
-			res.send(data);
-		})
-		.catch((error) => {
-			// eslint-disable-next-line no-console
-			console.log(error);
-			res.status(error.statusCode).send({
-				status: error.statusCode,
-				message: error.message,
-			});
-		});
-	// }
+			console.log('ERROR', err);
+			return res.send({});
+		}
+		// eslint-disable-next-line no-console
+		console.log('deleted recipe id', req.params.recipeId);
+		return res.send({ _id: req.params.recipeId });
+	});
 });
 
 module.exports = router;

@@ -47,7 +47,7 @@ app.get('/recipes', (req, res) => {
 	RecipeModel.find((err, recipes) => {
 		if (err) {
 			// eslint-disable-next-line no-console
-			console.log(err);
+			console.log('ERROR', err);
 			return res.send({});
 		}
 		return res.send(recipes);
@@ -55,8 +55,6 @@ app.get('/recipes', (req, res) => {
 });
 
 app.listen(port, () => {
-	// eslint-disable-next-line no-console
-	RecipeModel.find((err, recipes) => console.log(recipes));
 	// eslint-disable-next-line no-console
 	console.log(`recipe-api-gateway listening on port ${port}!`);
 });

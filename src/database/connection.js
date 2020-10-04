@@ -9,7 +9,7 @@ const mono = mongoose
 		useCreateIndex: true,
 	})
 	// eslint-disable-next-line no-console
-	.then(() => console.log('connected'));
+	.then(() => console.log('connected to', process.env.DB_NAME));
 
 module.exports = {
 	mono,
