@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 
 // eslint-disable-next-line no-unused-vars
 const { mono } = require('./src/database/connection');
-const { RecipeModel } = require('./src/database/recipeModel');
+const { Recipe } = require('./src/database/recipeModel');
 
 const { isProdEnv, port } = require('./config');
 
@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 	);
 	res.header('Vary', 'Origin');
 	res.header('Access-Control-Allow-Credentials', true);
-	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+	res.header('Access-Control-Allow-Methods', 'GET,PATCH,POST,DELETE');
 	res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 	next();
 });
@@ -44,7 +44,7 @@ app.use('/health', healthRoutes);
 app.use('/recipe', recipeRoutes);
 
 app.get('/recipes', (req, res) => {
-	RecipeModel.find((err, recipes) => {
+	Recipe.find((err, recipes) => {
 		if (err) {
 			// eslint-disable-next-line no-console
 			console.log('ERROR', err);

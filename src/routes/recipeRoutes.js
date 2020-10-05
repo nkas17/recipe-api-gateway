@@ -1,12 +1,12 @@
 const express = require('express');
 
 const router = express.Router();
-const { RecipeModel } = require('../database/recipeModel');
+const { Recipe } = require('../database/recipeModel');
 
 router.post('/', (req, res) => {
 	// eslint-disable-next-line no-console
 	console.log('request body', req.body);
-	const recipe = new RecipeModel(req.body);
+	const recipe = new Recipe(req.body);
 	recipe.save((err, savedRecipe) => {
 		if (err) {
 			// eslint-disable-next-line no-console
@@ -19,10 +19,31 @@ router.post('/', (req, res) => {
 	});
 });
 
+router.patch('/', (req, res) => {
+	// eslint-disable-next-line no-console
+	console.log('request body', req.body);
+	return Recipe.findOneAndUpdate(
+		{ _id: req.body._id },
+		{
+			category: req.body.category,
+			description: req.body.description,
+			directions: req.body.directions,
+			id: req.body.id,
+			ingredients: req.body.ingredients,
+			title: req.body.title,
+		},
+		{ new: true }
+	).then((recipe) => {
+		// eslint-disable-next-line no-console
+		console.log('updated recipe ', recipe);
+		return res.send(recipe);
+	});
+});
+
 router.delete('/:recipeId', (req, res) => {
 	// eslint-disable-next-line no-console
 	console.log('recipe id to delete', req.params.recipeId);
-	RecipeModel.deleteOne({ _id: req.params.recipeId }, (err) => {
+	Recipe.deleteOne({ _id: req.params.recipeId }, (err) => {
 		if (err) {
 			// eslint-disable-next-line no-console
 			console.log('ERROR', err);
