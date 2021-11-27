@@ -1,41 +1,40 @@
 {
-	"name": "recipe-api-gateway",
-	"version": "1.0.0",
-	"description": "api gateway for recipe front-end app",
-	"main": "index.js",
-	"scripts": {
-		"start": "node index.js",
-		"start:dev": "nodemon index.js",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"lint": "eslint src config.js index.js"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/nkas17/recipe-api-gateway"
-	},
-	"author": "nathanmweller",
-	"license": "MIT",
-	"dependencies": {
-		"basic-auth": "2.0.1",
-		"body-parser": "1.19.0",
-		"cookie-parser": "1.4.5",
-		"dotenv": "8.2.0",
-		"express": "4.17.1",
-		"jsonwebtoken": "8.5.1",
-		"mongoose": "5.10.7",
-		"morgan": "1.10.0",
-		"request": "2.88.2",
-		"request-promise": "4.2.6"
-	},
-	"devDependencies": {
-		"eslint": "7.10.0",
-		"eslint-config-airbnb": "18.2.0",
-		"eslint-config-prettier": "6.12.0",
-		"eslint-plugin-import": "2.22.1",
-		"eslint-plugin-jsx-a11y": "6.3.1",
-		"eslint-plugin-prettier": "3.1.4",
-		"eslint-plugin-react": "7.21.3",
-		"nodemon": "2.0.4",
-		"prettier": "2.1.2"
-	}
+  "name": "recipe-api-gateway",
+  "version": "1.0.0",
+  "description": "api gateway for recipe front-end app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "nodemon index.js",
+    "test": "echo \"Warning: no test specified\" && exit 0",
+    "lint": "eslint . src config.js index.js --max-warnings 0",
+    "format": "prettier --check \"**/*.*\"",
+    "pre-push": "yarn lint && yarn format && yarn test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nkas17/recipe-api-gateway"
+  },
+  "author": "nathanmweller",
+  "license": "MIT",
+  "dependencies": {
+    "basic-auth": "2.0.1",
+    "body-parser": "1.19.0",
+    "cookie-parser": "1.4.6",
+    "dotenv": "10.0.0",
+    "express": "4.17.1",
+    "jsonwebtoken": "8.5.1",
+    "mongoose": "6.0.13",
+    "morgan": "1.10.0",
+    "request": "2.88.2",
+    "request-promise": "4.2.6"
+  },
+  "devDependencies": {
+    "eslint": "8.3.0",
+    "eslint-config-airbnb": "19.0.1",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.25.3",
+    "nodemon": "2.0.15",
+    "prettier": "2.5.0"
+  }
 }

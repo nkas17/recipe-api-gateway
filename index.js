@@ -24,15 +24,15 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use((req, res, next) => {
-	res.header(
-		'Access-Control-Allow-Origin',
-		isProdEnv ? 'https://recipes.nathanmweller.com' : 'http://localhost:8080'
-	);
-	res.header('Vary', 'Origin');
-	res.header('Access-Control-Allow-Credentials', true);
-	res.header('Access-Control-Allow-Methods', 'GET,PATCH,POST,DELETE');
-	res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-	next();
+  res.header(
+    'Access-Control-Allow-Origin',
+    isProdEnv ? 'https://recipes.nathanmweller.com' : 'http://localhost:8080',
+  );
+  res.header('Vary', 'Origin');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Methods', 'GET,PATCH,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
 });
 
 app.use('/recipe/', authMiddleware);
@@ -44,17 +44,17 @@ app.use('/health', healthRoutes);
 app.use('/recipe', recipeRoutes);
 
 app.get('/recipes', (req, res) => {
-	Recipe.find((err, recipes) => {
-		if (err) {
-			// eslint-disable-next-line no-console
-			console.log('ERROR', err);
-			return res.send({});
-		}
-		return res.send(recipes);
-	});
+  Recipe.find((err, recipes) => {
+    if (err) {
+      // eslint-disable-next-line no-console
+      console.log('ERROR', err);
+      return res.send({});
+    }
+    return res.send(recipes);
+  });
 });
 
 app.listen(port, () => {
-	// eslint-disable-next-line no-console
-	console.log(`recipe-api-gateway listening on port ${port}!`);
+  // eslint-disable-next-line no-console
+  console.log(`recipe-api-gateway listening on port ${port}!`);
 });

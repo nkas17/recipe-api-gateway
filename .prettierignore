@@ -1,0 +1,8 @@
+.idea
+__snapshots__
+.gitignore
+yarn.lock
+.prettierignore
+.eslintignore
+.env
+.DS_Store
