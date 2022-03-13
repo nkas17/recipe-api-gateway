@@ -8,12 +8,7 @@ module.exports = (req, res, next) => {
   // eslint-disable-next-line no-console
   console.log(req.method);
   if (req.method !== 'OPTIONS') {
-    if (
-      // eslint-disable-next-line no-prototype-builtins
-      req.hasOwnProperty('headers') &&
-      // eslint-disable-next-line no-prototype-builtins
-      req.headers.hasOwnProperty('authorization')
-    ) {
+    if (req.headers && req.headers.authorization) {
       try {
         /*
          * Try to decode & verify the JWT token

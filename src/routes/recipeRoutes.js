@@ -19,10 +19,10 @@ router.post('/', (req, res) => {
   });
 });
 
-router.patch('/', (req, res) => {
+router.patch('/', (req, res) =>
   // eslint-disable-next-line no-console
-  console.log('request body', req.body);
-  return Recipe.findOneAndUpdate(
+  // console.log('request body', req.body);
+  Recipe.findOneAndUpdate(
     // eslint-disable-next-line no-underscore-dangle
     { _id: req.body._id },
     {
@@ -36,10 +36,10 @@ router.patch('/', (req, res) => {
     { new: true },
   ).then((recipe) => {
     // eslint-disable-next-line no-console
-    console.log('updated recipe ', recipe);
+    console.log('updated recipe ', recipe.id);
     return res.send(recipe);
-  });
-});
+  }),
+);
 
 router.delete('/:recipeId', (req, res) => {
   // eslint-disable-next-line no-console

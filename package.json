@@ -9,7 +9,7 @@
     "test": "echo \"Warning: no test specified\" && exit 0",
     "lint": "eslint . src config.js index.js --max-warnings 0",
     "format": "prettier --check \"**/*.*\"",
-    "pre-push": "yarn lint && yarn format && yarn test"
+    "pre-push": "npm run lint && npm run format && npm run test"
   },
   "repository": {
     "type": "git",
@@ -19,22 +19,22 @@
   "license": "MIT",
   "dependencies": {
     "basic-auth": "2.0.1",
-    "body-parser": "1.19.0",
+    "body-parser": "1.19.2",
     "cookie-parser": "1.4.6",
-    "dotenv": "10.0.0",
-    "express": "4.17.1",
+    "dotenv": "16.0.0",
+    "express": "4.17.3",
     "jsonwebtoken": "8.5.1",
-    "mongoose": "6.0.13",
+    "mongoose": "6.2.6",
     "morgan": "1.10.0",
     "request": "2.88.2",
     "request-promise": "4.2.6"
   },
   "devDependencies": {
-    "eslint": "8.3.0",
-    "eslint-config-airbnb": "19.0.1",
-    "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-import": "2.25.3",
+    "eslint": "8.11.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-import": "2.25.4",
     "nodemon": "2.0.15",
-    "prettier": "2.5.0"
+    "prettier": "2.5.1"
   }
 }
