@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 
+// eslint-disable-next-line no-unused-vars
+const { mono } = require('./src/database/connection');
 const { Recipe } = require('./src/database/recipeModel');
 
 const { isProdEnv, port } = require('./config');
