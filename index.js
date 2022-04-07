@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use((req, res, next) => {
   res.header(
     'Access-Control-Allow-Origin',
-    isProdEnv ? 'https://nathanmweller.com' : 'http://localhost:8080',
+    isProdEnv ? 'https://food.nathanmweller.com' : 'http://localhost:8080',
   );
   res.header('Vary', 'Origin');
   res.header('Access-Control-Allow-Credentials', true);
