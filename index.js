@@ -43,15 +43,15 @@ app.use('/user', userRoutes);
 app.use('/health', healthRoutes);
 app.use('/recipe', recipeRoutes);
 
-app.get('/recipes', (req, res) => {
-  Recipe.find((err, recipes) => {
-    if (err) {
-      // eslint-disable-next-line no-console
-      console.log('ERROR', err);
-      return res.send({});
-    }
+app.get('/recipes', async (req, res) => {
+  try {
+    const recipes = await Recipe.find();
     return res.send(recipes);
-  });
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.log('ERROR', err);
+    return res.send({});
+  }
 });
 
 app.listen(port, () => {
